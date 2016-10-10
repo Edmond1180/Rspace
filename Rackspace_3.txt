@@ -20,18 +20,20 @@
   }
 </style>
 <div ng-app="svApp" ng-controller="latinTable">
-
+ 
 <table>
   <tr>
+    <th>no.</th>
+    <th>Title</th>
     <th>User Id </th>
     <th>ID</th>
-    <th>Title</th>
     <th>Description</th>
   </tr>
-  <tr ng-repeat="x in users">
+  <tr ng-repeat="x in users | orderBy : 'title'">
+    <td>{{ $index + 1 }}.</td>
+    <td>{{ x.title}}</td>
     <td>{{ x.userId}}</td>
     <td>{{ x.id}}</td>
-    <td>{{ x.title}}</td>
     <td>{{ x.body}}</td>
   </tr>
 </table>
@@ -48,4 +50,3 @@ app.controller('latinTable', function($scope, $http) {
 
 </body>
 </html>
-

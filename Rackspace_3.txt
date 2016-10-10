@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+<style>
+  table, th , td  {
+    border: 2px solid grey;
+    border-collapse: collapse;
+    padding: 10px;
+  } 
+  th { 
+     font-weight: bold;    
+     padding: 2px;
+  }
+  table tr:nth-child(even) {
+    background-color: #e0e0d1;
+  }
+  table th:nth-child(odd) {
+    background-color: #ffffff;
+  }
+</style>
+<div ng-app="svApp" ng-controller="latinTable">
+
+<table>
+  <tr>
+    <th>User Id </th>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+  <tr ng-repeat="x in users">
+    <td>{{ x.userId}}</td>
+    <td>{{ x.id}}</td>
+    <td>{{ x.title}}</td>
+    <td>{{ x.body}}</td>
+  </tr>
+</table>
+
+</div>
+
+<script>
+var app = angular.module('svApp', []);
+app.controller('latinTable', function($scope, $http) {
+    $http.get("http://jsonplaceholder.typicode.com/posts")
+    .then(function (response) {$scope.users = response.data;});
+});
+</script>
+
+</body>
+</html>
+
